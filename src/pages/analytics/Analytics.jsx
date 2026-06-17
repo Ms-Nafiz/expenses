@@ -66,27 +66,27 @@ const Analytics = () => {
     <Layout>
       <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white">Financial Analytics</h1>
-          <p className="text-slate-400">Detailed breakdown of your {analysisType === 'expense' ? 'spending' : 'earnings'}.</p>
+          <h1 className="text-3xl font-bold text-white">আর্থিক বিশ্লেষণ</h1>
+          <p className="text-slate-400">আপনার {analysisType === 'expense' ? 'খরচ' : 'উপার্জন'} এর বিস্তারিত বিশ্লেষণ।</p>
         </div>
         <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700">
           <button
             onClick={() => setAnalysisType('all')}
             className={`px-6 py-2 rounded-lg transition-all font-medium ${analysisType === 'all' ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-slate-200'}`}
           >
-            All
+            সব
           </button>
           <button
             onClick={() => setAnalysisType('expense')}
             className={`px-6 py-2 rounded-lg transition-all font-medium ${analysisType === 'expense' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'text-slate-400 hover:text-slate-200'}`}
           >
-            Expenses
+            খরচ
           </button>
           <button
             onClick={() => setAnalysisType('income')}
             className={`px-6 py-2 rounded-lg transition-all font-medium ${analysisType === 'income' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-400 hover:text-slate-200'}`}
           >
-            Income
+            আয়
           </button>
         </div>
       </div>
@@ -98,7 +98,7 @@ const Analytics = () => {
           className="glass p-8 rounded-3xl h-[450px]"
         >
           <h3 className="text-xl font-bold mb-8">
-            {analysisType === 'all' ? 'All Transactions' : (analysisType === 'expense' ? 'Expenses' : 'Income')} by Category
+            {analysisType === 'all' ? 'সব লেনদেন' : (analysisType === 'expense' ? 'খরচ' : 'আয়')} বিভাগ অনুযায়ী
           </h3>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
@@ -130,7 +130,7 @@ const Analytics = () => {
           transition={{ delay: 0.1 }}
           className="glass p-8 rounded-3xl h-[450px]"
         >
-          <h3 className="text-xl font-bold mb-8">Income vs Expenses</h3>
+          <h3 className="text-xl font-bold mb-8">আয় বনাম খরচ</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={monthlyComparison}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
@@ -151,7 +151,7 @@ const Analytics = () => {
       </div>
 
       <div className="mt-8 glass p-8 rounded-3xl">
-        <h3 className="text-xl font-bold mb-6">Spending Breakdown</h3>
+        <h3 className="text-xl font-bold mb-6">খরচের বিশ্লেষণ</h3>
         <div className="space-y-4">
           {categoryData.sort((a, b) => b.value - a.value).map((cat, index) => (
             <div key={cat.name} className="flex items-center gap-4">
@@ -170,7 +170,7 @@ const Analytics = () => {
             </div>
           ))}
           {categoryData.length === 0 && (
-            <p className="text-center text-slate-500 py-4">No data available for the selected period.</p>
+            <p className="text-center text-slate-500 py-4">নির্বাচিত সময়ের জন্য কোন ডেটা নেই।</p>
           )}
         </div>
       </div>

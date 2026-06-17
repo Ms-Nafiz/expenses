@@ -10,7 +10,7 @@ const API_URL = API_KEY
 
 export const getFinancialInsights = async (transactions) => {
   if (!API_KEY) {
-    return "Please provide a valid Gemini API key via environment variable VITE_GEMINI_API_KEY to enable AI insights.";
+    return "দয়া করে VITE_GEMINI_API_KEY পরিবেশ ভেরিয়েবল সেট করুন যাতে এআই বিশ্লেষণ সক্রিয় করা যায়।";
   }
 
   // Prepare transaction data for AI
@@ -25,7 +25,7 @@ export const getFinancialInsights = async (transactions) => {
   const prompt = `
     Analyze these financial transactions (currency is BDT ৳) and provide 3-4 concise, actionable insights in bullet points.
     IMPORTANT: Provide the response entirely in Bengali (Bangla).
-    Focus on spending habits, budget suggestions, and savings opportunities.
+    ব্যয় প্রবণতা, বাজেট পরামর্শ, এবং সঞ্চয় বৃদ্ধির সুযোগের ওপর ফোকাস করুন।
     Transactions: ${JSON.stringify(summary)}
   `;
 
@@ -55,18 +55,18 @@ export const getFinancialInsights = async (transactions) => {
     }
   } catch (error) {
     console.error("AI Insight Error:", error);
-    return `AI Insight Error: ${error.message}`;
+    return `AI বিশ্লেষণে ত্রুটি: ${error.message}`;
   }
 };
 
 export const chatWithAdvisor = async (history, message, transactions) => {
-  if (!API_KEY) return "API Key missing.";
+  if (!API_KEY) return "API কী পাওয়া যায়নি।";
 
   const context = `
     You are an expert personal finance advisor. 
     The user's current transactions (in BDT ৳) are: ${JSON.stringify(transactions.slice(0, 50))}.
     Answer the user's questions concisely in Bengali (Bangla). 
-    Help them understand their spending and provide tips.
+    তাদের খরচ বোঝার ক্ষেত্রে সাহায্য করুন এবং উপদেশ দিন।
   `;
 
   const chatHistory = history.map((msg) => ({

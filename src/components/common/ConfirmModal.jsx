@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
-const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText = "Confirm", cancelText = "Cancel", type = "danger" }) => {
+const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText = "নিশ্চিত করুন", cancelText = "বাতিল", type = "danger" }) => {
   if (!isOpen) return null;
 
   const typeColors = {

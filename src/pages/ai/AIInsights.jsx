@@ -67,9 +67,9 @@ const AIInsights = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
           <FaBrain className="text-indigo-400" />
-          AI Financial Assistant
+          এআই আর্থিক সহকারী
         </h1>
-        <p className="text-slate-400 mt-2">Get smart analysis and recommendations based on your spending.</p>
+        <p className="text-slate-400 mt-2">আপনার খরচের ভিত্তিতে স্মার্ট বিশ্লেষণ ও পরামর্শ পান।</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:h-[calc(100vh-250px)]">
@@ -83,14 +83,14 @@ const AIInsights = () => {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-bold flex items-center gap-2">
                 <FaMagic className="text-purple-400" />
-                Latest Insights
+                সর্বশেষ বিশ্লেষণ
               </h3>
               <button
                 onClick={generateInsights}
                 disabled={loading || transactions.length === 0}
                 className="bg-indigo-600/20 text-indigo-300 px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-indigo-600/30 transition-all disabled:opacity-50"
               >
-                {loading ? 'Analyzing...' : 'Refresh'}
+                {loading ? 'বিশ্লেষণ হচ্ছে...' : 'আপডেট'}
               </button>
             </div>
 
@@ -100,9 +100,9 @@ const AIInsights = () => {
                   {insights}
                 </div>
               ) : (
-                <div className="h-full flex flex-col items-center justify-center text-center space-y-4 text-slate-600">
+                  <div className="h-full flex flex-col items-center justify-center text-center space-y-4 text-slate-600">
                   <FaRobot className="text-5xl opacity-20" />
-                  <p className="text-sm">Click "Refresh" for AI analysis.</p>
+                  <p className="text-sm">এআই বিশ্লেষণের জন্য "আপডেট" চাপুন।</p>
                 </div>
               )}
             </div>
@@ -139,10 +139,10 @@ const AIInsights = () => {
                   <FaRobot className="text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-sm">Financial Advisor Chat</h3>
+                  <h3 className="font-bold text-white text-sm">আর্থিক পরামর্শকারী চ্যাট</h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-[10px] text-emerald-500 font-medium uppercase tracking-wider">AI Online</span>
+                    <span className="text-[10px] text-emerald-500 font-medium uppercase tracking-wider">এআই অনলাইনে</span>
                   </div>
                 </div>
               </div>

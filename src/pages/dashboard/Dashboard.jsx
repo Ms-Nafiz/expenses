@@ -67,7 +67,7 @@ const Dashboard = () => {
   const chartData = useMemo(() => {
     // This is a simplified version - in a real app you'd group by date
     return transactions.slice(0, 10).reverse().map(t => ({
-      name: t.date ? new Date(t.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A',
+      name: t.date ? new Date(t.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'অনুপলব্ধ',
       amount: parseFloat(t.amount)
     }));
   }, [transactions]);
@@ -75,34 +75,34 @@ const Dashboard = () => {
   return (
     <Layout>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white">Financial Overview</h1>
-        <p className="text-slate-400">Welcome back! Here's what's happening with your money.</p>
+        <h1 className="text-3xl font-bold text-white">আর্থিক সারসংক্ষেপ</h1>
+        <p className="text-slate-400">স্বাগতম! আপনার অর্থের সাম্প্রতিক অবস্থা নিচে দেখানো হলো।</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatCard 
-          title="Total Balance" 
+          title="মোট ব্যালান্স" 
           amount={stats.balance} 
           icon={<FaWallet className="text-indigo-400" />} 
           color="bg-indigo-400"
           delay={0.1}
         />
         <StatCard 
-          title="Monthly Income" 
+          title="মাসিক আয়" 
           amount={stats.income} 
           icon={<FaArrowUp className="text-emerald-400" />} 
           color="bg-emerald-400"
           delay={0.2}
         />
         <StatCard 
-          title="Monthly Expenses" 
+          title="মাসিক খরচ" 
           amount={stats.expenses} 
           icon={<FaArrowDown className="text-rose-400" />} 
           color="bg-rose-400"
           delay={0.3}
         />
         <StatCard 
-          title="Savings Rate" 
+          title="সঞ্চয় হার" 
           amount={`${stats.savingsRate}%`} 
           icon={<FaChartLine className="text-amber-400" />} 
           color="bg-amber-400"
@@ -117,7 +117,7 @@ const Dashboard = () => {
           transition={{ delay: 0.5 }}
           className="lg:col-span-2 glass p-8 rounded-3xl"
         >
-          <h3 className="text-xl font-bold mb-8">Spending Trends</h3>
+          <h3 className="text-xl font-bold mb-8">খরচের প্রবণতা</h3>
           <div className="h-64 md:h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
@@ -165,18 +165,18 @@ const Dashboard = () => {
           transition={{ delay: 0.6 }}
           className="glass p-8 rounded-3xl"
         >
-          <h3 className="text-xl font-bold mb-4">AI Insight</h3>
+          <h3 className="text-xl font-bold mb-4">এআই বিশ্লেষণ</h3>
           <div className="bg-indigo-500/10 border border-indigo-500/20 p-6 rounded-2xl">
             <div className="flex items-center space-x-3 mb-4 text-indigo-400">
               <FaChartLine />
-              <span className="font-bold">Smart Analysis</span>
+              <span className="font-bold">স্মার্ট বিশ্লেষণ</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
               {stats.expenses > stats.income 
-                ? "Your expenses currently exceed your income. Consider reviewing your 'Shopping' and 'Entertainment' categories to find potential savings."
+                ? "আপনার খরচ বর্তমানে আপনার আয়ের চেয়ে বেশি। সম্ভাব্য সঞ্চয়ের জন্য 'শপিং' এবং 'বিনোদন' বিভাগগুলো পর্যালোচনা করুন।"
                 : stats.income > 0 
-                  ? `Great job! You've saved ${stats.savingsRate}% of your income this period. Based on your trends, you could reach your savings goal 2 months earlier.`
-                  : "Start adding your income and expenses to see AI-powered financial insights here."}
+                  ? `চমৎকার! এই সময়ে আপনি আপনার আয়ের ${stats.savingsRate}% সঞ্চয় করেছেন। আপনার প্রবণতা অনুযায়ী, আপনি আপনার সঞ্চয়ের লক্ষ্য ২ মাস আগে অর্জন করতে পারেন।`
+                  : "আপনার আয় ও খরচ যোগ করুন — এখানে এআই-চালিত আর্থিক বিশ্লেষণ দেখানো হবে।"}
             </p>
           </div>
         </motion.div>

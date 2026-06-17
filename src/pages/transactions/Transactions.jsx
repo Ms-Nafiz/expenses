@@ -116,8 +116,8 @@ const Transactions = () => {
     <Layout>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white">Transactions</h1>
-          <p className="text-slate-400">View and manage your financial records.</p>
+          <h1 className="text-3xl font-bold text-white">লেনদেন</h1>
+          <p className="text-slate-400">আপনার আর্থিক নথি দেখুন এবং পরিচালনা করুন।</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
@@ -125,30 +125,30 @@ const Transactions = () => {
             className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-xl transition-all border border-slate-700"
           >
             <FaFileExcel className="text-emerald-500" />
-            <span className="hidden md:inline">Excel</span>
+            <span className="hidden md:inline">এক্সেল</span>
           </button>
           <button
             onClick={() => exportToPDF(transactions)}
             className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-xl transition-all border border-slate-700"
           >
             <FaFilePdf className="text-rose-500" />
-            <span className="hidden md:inline">PDF</span>
+            <span className="hidden md:inline">পিডিএফ</span>
           </button>
           <button
             onClick={handleOpenAddModal}
             className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-2xl shadow-lg shadow-indigo-500/20 transition-all"
           >
             <FaPlus />
-            <span className="hidden sm:inline">Add Transaction</span>
-            <span className="sm:hidden">Add</span>
+            <span className="hidden sm:inline">লেনদেন যোগ করুন</span>
+            <span className="sm:hidden">যোগ</span>
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <SummaryCard title="Total Income" amount={totals.income} type="income" />
-        <SummaryCard title="Total Expenses" amount={totals.expense} type="expense" />
-        <SummaryCard title="Net Balance" amount={totals.balance} type="balance" />
+        <SummaryCard title="মোট আয়" amount={totals.income} type="income" />
+        <SummaryCard title="মোট খরচ" amount={totals.expense} type="expense" />
+        <SummaryCard title="নেট ব্যালান্স" amount={totals.balance} type="balance" />
       </div>
 
       <div className="glass rounded-3xl overflow-hidden border border-slate-800">
@@ -157,7 +157,7 @@ const Transactions = () => {
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
             <input 
               type="text" 
-              placeholder="Search note or category..." 
+              placeholder="নোট বা বিভাগে খুঁজুন..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-12 py-2.5 text-white focus:border-indigo-500 outline-none transition-all"
@@ -171,9 +171,9 @@ const Transactions = () => {
                 onChange={(e) => setFilterType(e.target.value)}
                 className="bg-slate-800/50 border border-slate-700 rounded-xl px-12 py-2.5 text-white focus:border-indigo-500 outline-none appearance-none transition-all"
               >
-                <option value="all">All Types</option>
-                <option value="income">Income Only</option>
-                <option value="expense">Expense Only</option>
+                <option value="all">সব ধরন</option>
+                <option value="income">শুধু আয়</option>
+                <option value="expense">শুধু খরচ</option>
               </select>
             </div>
           </div>
@@ -193,9 +193,9 @@ const Transactions = () => {
                   <span className={`w-2 h-2 rounded-full ${t.type === 'income' ? 'bg-emerald-500' : 'bg-rose-500'}`}></span>
                   <span className="text-[10px] uppercase tracking-wider font-bold text-slate-500">{t.category}</span>
                 </div>
-                <h4 className="text-sm font-medium text-white truncate">{t.note || 'No description'}</h4>
+                <h4 className="text-sm font-medium text-white truncate">{t.note || 'বিস্তারিত নেই'}</h4>
                 <p className="text-[10px] text-slate-500 mt-0.5">
-                  {t.date ? format(new Date(t.date), 'MMM dd, yyyy') : 'N/A'}
+                  {t.date ? format(new Date(t.date), 'MMM dd, yyyy') : 'অনুপলব্ধ'}
                 </p>
               </div>
               <div className="text-right">
@@ -220,11 +220,11 @@ const Transactions = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-800/50 text-slate-400 text-sm uppercase tracking-wider">
-                <th className="px-6 py-4 font-medium">Date</th>
-                <th className="px-6 py-4 font-medium">Category</th>
-                <th className="px-6 py-4 font-medium">Note</th>
-                <th className="px-6 py-4 font-medium">Amount</th>
-                <th className="px-6 py-4 font-medium text-right">Actions</th>
+                <th className="px-6 py-4 font-medium">তারিখ</th>
+                <th className="px-6 py-4 font-medium">বিভাগ</th>
+                <th className="px-6 py-4 font-medium">বর্ণনা</th>
+                <th className="px-6 py-4 font-medium">পরিমাণ</th>
+                <th className="px-6 py-4 font-medium text-right">কর্ম</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
@@ -238,7 +238,7 @@ const Transactions = () => {
                     className="hover:bg-slate-800/30 transition-all group"
                   >
                     <td className="px-6 py-4 text-slate-300">
-                      {t.date ? format(new Date(t.date), 'MMM dd, yyyy') : 'N/A'}
+                      {t.date ? format(new Date(t.date), 'MMM dd, yyyy') : 'অনুপলব্ধ'}
                     </td>
                     <td className="px-6 py-4">
                       <span className="bg-slate-800 text-indigo-300 px-3 py-1 rounded-full text-xs font-medium border border-indigo-500/20">
@@ -274,7 +274,7 @@ const Transactions = () => {
         
         {filteredTransactions.length === 0 && (
           <div className="px-6 py-12 text-center text-slate-500">
-            No transactions found.
+            কোন লেনদেন পাওয়া যায়নি।
           </div>
         )}
       </div>
@@ -282,7 +282,7 @@ const Transactions = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        title={editingTransaction ? "Edit Transaction" : "Add New Transaction"}
+        title={editingTransaction ? "লেনদেন সম্পাদনা" : "নতুন লেনদেন যোগ করুন"}
       >
         <TransactionForm 
           key={editingTransaction?.id || 'new'}
@@ -296,9 +296,9 @@ const Transactions = () => {
         isOpen={confirmDelete.isOpen}
         onClose={() => setConfirmDelete({ isOpen: false, id: null })}
         onConfirm={executeDelete}
-        title="Delete Transaction"
-        message="Are you sure you want to delete this transaction? This action cannot be undone."
-        confirmText="Delete"
+        title="লেনদেন মুছুন"
+        message="আপনি কি নিশ্চিত যে আপনি এই লেনদেনটি মুছতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।"
+        confirmText="মুছুন"
         type="danger"
       />
     </Layout>

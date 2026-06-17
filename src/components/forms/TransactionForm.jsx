@@ -59,12 +59,12 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
   const startVoiceCapture = useCallback(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert("Voice recognition is not supported in this browser.");
+      alert("এই ব্রাউজারে ভয়েস রিকগনিশন সমর্থিত নয়।");
       return;
     }
 
     const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US'; // Can be changed to 'bn-BD' for Bangla
+    recognition.lang = 'bn-BD'; // Use Bangla
     recognition.onstart = () => setIsListening(true);
     recognition.onend = () => setIsListening(false);
     recognition.onresult = (event) => {
@@ -92,22 +92,22 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-2">
               <FaMagic size={12} />
-              Smart AI Entry
+              স্মার্ট এআই এন্ট্রি
             </h4>
             <button
               type="button"
               onClick={startVoiceCapture}
               className={`p-2 rounded-xl transition-all ${isListening ? 'bg-rose-500 text-white animate-pulse' : 'bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30'}`}
-              title="Voice Input"
+              title="ভয়েস ইনপুট"
             >
               <FaMicrophone size={14} />
             </button>
           </div>
           <div className="relative">
-            <textarea
+              <textarea
               value={smartInput}
               onChange={(e) => setSmartInput(e.target.value)}
-              placeholder="Paste SMS, Bank text, or note here... (e.g. Spent 500 on dinner)"
+              placeholder="এসএমএস/ব্যাংক টেক্সট বা নোট এখানে পেস্ট করুন... (যেমন: Dinner-এ 500 টাকার খরচ)"
               className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 focus:border-indigo-500 outline-none transition-all resize-none h-20"
             />
             {smartInput && (
@@ -117,7 +117,7 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
                 className="absolute bottom-3 right-3 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg hover:bg-indigo-500 transition-all flex items-center gap-1"
                 disabled={isParsing}
               >
-                {isParsing ? 'Parsing...' : <><FaPaste size={10} /> Extract</>}
+                {isParsing ? 'পাঠ বিশ্লেষণ হচ্ছে...' : <><FaPaste size={10} /> বের করুন</>}
               </button>
             )}
           </div>
@@ -132,7 +132,7 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
             className="hidden peer"
           />
           <div className="py-2 rounded-lg peer-checked:bg-rose-500/20 peer-checked:text-rose-400 text-slate-400 transition-all">
-            Expense
+            খরচ
           </div>
         </label>
         <label className="flex-1 cursor-pointer text-center">
@@ -143,7 +143,7 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
             className="hidden peer"
           />
           <div className="py-2 rounded-lg peer-checked:bg-emerald-500/20 peer-checked:text-emerald-400 text-slate-400 transition-all">
-            Income
+            আয়
           </div>
         </label>
       </div>
@@ -154,13 +154,13 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
           type="number"
           step="0.01"
           placeholder="0.00"
-          {...register('amount', { required: 'Amount is required', min: 0.01 })}
+          {...register('amount', { required: 'টাকার পরিমাণ আবশ্যক', min: 0.01 })}
           className={`w-full bg-slate-800/50 border ${errors.amount ? 'border-rose-500' : 'border-slate-700'} rounded-xl px-12 py-3 text-white focus:border-indigo-500 outline-none`}
         />
         {watch('amount') > 10000 && watch('type') === 'expense' && (
           <div className="absolute -top-6 right-0 text-[10px] text-amber-400 flex items-center gap-1 font-bold animate-bounce">
             <FaMagic size={10} />
-            Large Expense Warning!
+            বড় খরচ সতর্কতা!
           </div>
         )}
       </div>
@@ -175,8 +175,8 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
         </select>
         {isSuggesting && (
           <div className="absolute right-10 top-1/2 -translate-y-1/2 flex items-center space-x-1 text-indigo-400 text-xs animate-pulse">
-            <FaMagic size={10} />
-            <span>AI Suggesting...</span>
+          <FaMagic size={10} />
+          <span>এআই পরামর্শ দিচ্ছে...</span>
           </div>
         )}
       </div>
@@ -186,11 +186,11 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
           <FaTag className="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400" />
           <input
             type="text"
-            placeholder="Custom Category Name"
+            placeholder="কাস্টম ক্যাটেগরি নাম"
             {...register('customCategory', { required: selectedCategory === 'Other' })}
             className="w-full bg-indigo-500/10 border border-indigo-500/30 rounded-xl px-12 py-3 text-white focus:border-indigo-500 outline-none"
           />
-          {errors.customCategory && <span className="text-rose-400 text-xs mt-1">Please enter a category name</span>}
+          {errors.customCategory && <span className="text-rose-400 text-xs mt-1">অনুগ্রহ করে ক্যাটেগরির নাম লিখুন</span>}
         </div>
       )}
 
@@ -198,7 +198,7 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
         <FaCalendarAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
         <input
           type="date"
-          {...register('date', { required: 'Date is required' })}
+          {...register('date', { required: 'তারিখ আবশ্যক' })}
           className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-12 py-3 text-white focus:border-indigo-500 outline-none"
         />
       </div>
@@ -206,11 +206,11 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
       <div className="relative">
         <FaStickyNote className="absolute left-4 top-4 text-slate-500" />
         <textarea
-          placeholder="Notes (optional)"
-          rows="3"
-          {...register('note')}
-          className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-12 py-3 text-white focus:border-indigo-500 outline-none resize-none"
-        ></textarea>
+        placeholder="নোট (ঐচ্ছিক)"
+        rows="3"
+        {...register('note')}
+        className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-12 py-3 text-white focus:border-indigo-500 outline-none resize-none"
+      ></textarea>
       </div>
 
       <button
@@ -218,7 +218,7 @@ const TransactionForm = ({ onSubmit, initialData, isLoading }) => {
         disabled={isLoading}
         className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-indigo-500/20 transition-all"
       >
-        {isLoading ? 'Saving...' : (initialData ? 'Update Transaction' : 'Add Transaction')}
+        {isLoading ? 'সংরক্ষণ হচ্ছে...' : (initialData ? 'লেনদেন আপডেট করুন' : 'লেনদেন যোগ করুন')}
       </button>
     </form>
   );

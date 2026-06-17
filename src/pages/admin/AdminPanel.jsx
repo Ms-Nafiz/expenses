@@ -40,9 +40,9 @@ const AdminPanel = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
           <FaUserShield className="text-indigo-400" />
-          Admin Control Panel
+          অ্যাডমিন কন্ট্রোল প্যানেল
         </h1>
-        <p className="text-slate-400">Manage user access and approvals.</p>
+        <p className="text-slate-400">ব্যবহারকারীর প্রবেশাধিকার ও অনুমোদন পরিচালনা করুন।</p>
       </div>
 
       <div className="glass rounded-3xl overflow-hidden border border-slate-800">
@@ -69,7 +69,7 @@ const AdminPanel = () => {
                       <div className="text-slate-400 text-xs">
                         {u.createdAt?.toDate
                           ? u.createdAt.toDate().toLocaleDateString()
-                          : "N/A"}
+                          : "অনুপলব্ধ"}
                       </div>
                     </div>
                   </div>
@@ -90,11 +90,11 @@ const AdminPanel = () => {
                   <div className="text-xs text-slate-400 flex items-center gap-2">
                     {u.status === "active" ? (
                       <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-                        <FaCheckCircle /> Active
+                        <FaCheckCircle /> সক্রিয়
                       </span>
                     ) : (
                       <span className="flex items-center gap-1.5 text-amber-400 font-bold">
-                        <FaClock /> Pending
+                        <FaClock /> অনুমোদনের অপেক্ষায়
                       </span>
                     )}
                   </div>
@@ -108,7 +108,7 @@ const AdminPanel = () => {
                             : "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20"
                         }`}
                       >
-                        {u.status === "active" ? "Suspend" : "Approve"}
+                        {u.status === "active" ? "সাসপেন্ড" : "অনুমোদন"}
                       </button>
                     )}
                   </div>
@@ -123,11 +123,11 @@ const AdminPanel = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-800/50 text-slate-400 text-sm uppercase tracking-wider">
-                <th className="px-6 py-4 font-medium">User Email</th>
-                <th className="px-6 py-4 font-medium">Joined Date</th>
-                <th className="px-6 py-4 font-medium">Role</th>
-                <th className="px-6 py-4 font-medium">Status</th>
-                <th className="px-6 py-4 font-medium text-right">Actions</th>
+                <th className="px-6 py-4 font-medium">ইমেল</th>
+                <th className="px-6 py-4 font-medium">যোগদানের তারিখ</th>
+                <th className="px-6 py-4 font-medium">ভূমিকা</th>
+                <th className="px-6 py-4 font-medium">স্ট্যাটাস</th>
+                <th className="px-6 py-4 font-medium text-right">কর্ম</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
@@ -152,7 +152,7 @@ const AdminPanel = () => {
                     <td className="px-6 py-4 text-slate-400 text-xs">
                       {u.createdAt?.toDate
                         ? u.createdAt.toDate().toLocaleDateString()
-                        : "N/A"}
+                        : "অনুপলব্ধ"}
                     </td>
                     <td className="px-6 py-4">
                       <span
@@ -169,11 +169,11 @@ const AdminPanel = () => {
                       <div className="flex items-center gap-2">
                         {u.status === "active" ? (
                           <span className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
-                            <FaCheckCircle /> Active
+                            <FaCheckCircle /> সক্রিয়
                           </span>
                         ) : (
                           <span className="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
-                            <FaClock /> Pending
+                            <FaClock /> অনুমোদনের অপেক্ষায়
                           </span>
                         )}
                       </div>
@@ -188,7 +188,7 @@ const AdminPanel = () => {
                               : "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20"
                           }`}
                         >
-                          {u.status === "active" ? "Suspend" : "Approve"}
+                          {u.status === "active" ? "সাসপেন্ড" : "অনুমোদন"}
                         </button>
                       )}
                     </td>
@@ -200,7 +200,7 @@ const AdminPanel = () => {
         </div>
         {users.length === 0 && !loading && (
           <div className="p-12 text-center text-slate-500">
-            No users found in the system.
+            সিস্টেমে কোনো ব্যবহারকারী নেই।
           </div>
         )}
       </div>
