@@ -42,7 +42,9 @@ const AdminPanel = () => {
           <FaUserShield className="text-indigo-400" />
           অ্যাডমিন কন্ট্রোল প্যানেল
         </h1>
-        <p className="text-slate-400">ব্যবহারকারীর প্রবেশাধিকার ও অনুমোদন পরিচালনা করুন।</p>
+        <p className="text-slate-400">
+          ব্যবহারকারীর প্রবেশাধিকার ও অনুমোদন পরিচালনা করুন।
+        </p>
       </div>
 
       <div className="glass rounded-3xl overflow-hidden border border-slate-800">

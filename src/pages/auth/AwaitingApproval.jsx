@@ -22,23 +22,24 @@ const AwaitingApproval = () => {
         </div>
 
         <h1 className="text-3xl font-bold text-white mb-4">
-           অনুমোদনের অপেক্ষায়
+          অনুমোদনের অপেক্ষায়
         </h1>
         <p className="text-slate-400 mb-8 leading-relaxed">
-          <span className="text-indigo-400 font-bold">আমার হিসাব নিকাশ</span>-এ স্বাগতম,
+          <span className="text-indigo-400 font-bold">আমার হিসাব নিকাশ</span>-এ
+          স্বাগতম,
           <br />
           <span className="text-slate-300 font-medium">{user?.email}</span>
-          <br /><br />
-          আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে। বর্তমানে এটি প্রশাসকের
-          যাচাইকরণ অপেক্ষায় আছে। অ্যাকাউন্ট সক্রিয় হলে অনুগ্রহ করে পরে আবার
-          দেখে নিন।
+          <br />
+          <br />
+          আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে। বর্তমানে এটি প্রশাসকের যাচাইকরণ
+          অপেক্ষায় আছে। অ্যাকাউন্ট সক্রিয় হলে অনুগ্রহ করে পরে আবার দেখে নিন।
         </p>
 
         <div className="bg-slate-900/50 p-6 rounded-3xl mb-8 border border-slate-800 flex items-center gap-4 text-left">
           <FaShieldAlt className="text-indigo-400 shrink-0" size={24} />
           <p className="text-xs text-slate-500 italic">
-            এই নিরাপত্তা ব্যবস্থা নিশ্চিত করে যে কেবল অনুমোদিত ব্যক্তিরাই
-            আর্থিক ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
+            এই নিরাপত্তা ব্যবস্থা নিশ্চিত করে যে কেবল অনুমোদিত ব্যক্তিরাই আর্থিক
+            ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
           </p>
         </div>
 
@@ -46,8 +47,8 @@ const AwaitingApproval = () => {
           onClick={() => logout()}
           className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white py-4 rounded-2xl transition-all font-bold border border-slate-700"
         >
-           <FaSignOutAlt />
-           লগআউট
+          <FaSignOutAlt />
+          লগআউট
         </button>
       </motion.div>
     </div>

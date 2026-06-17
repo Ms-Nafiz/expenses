@@ -115,7 +115,7 @@ const Login = () => {
         </button>
 
         <p className="text-center text-slate-400 mt-8">
-          অ্যাকাউন্ট নেই? {" "}
+          অ্যাকাউন্ট নেই?{" "}
           <Link
             to="/register"
             className="text-indigo-400 hover:text-indigo-300 font-medium"

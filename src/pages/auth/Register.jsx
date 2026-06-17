@@ -131,7 +131,7 @@ const Register = () => {
         </button>
 
         <p className="text-center text-slate-400 mt-8">
-          ইতিমধ্যেই একটি অ্যাকাউন্ট আছে? {" "}
+          ইতিমধ্যেই একটি অ্যাকাউন্ট আছে?{" "}
           <Link
             to="/login"
             className="text-indigo-400 hover:text-indigo-300 font-medium"

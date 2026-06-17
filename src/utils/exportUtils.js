@@ -16,10 +16,7 @@ export const exportToExcel = (transactions) => {
 
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "লেনদেন");
-  XLSX.writeFile(
-    workbook,
-    `লেনদেন_${format(new Date(), "yyyy-MM-dd")}.xlsx`,
-  );
+  XLSX.writeFile(workbook, `লেনদেন_${format(new Date(), "yyyy-MM-dd")}.xlsx`);
 };
 
 export const exportToPDF = (transactions) => {
