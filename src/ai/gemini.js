@@ -3,22 +3,23 @@
  * Integration with Gemini API for financial analysis.
  */
 
-const API_KEY = "AIzaSyDaGfTN7UZQ6Wo5AwVzVvI4wfn65E77zBI"; // To be provided by user
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_URL = API_KEY
+  ? `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`
+  : null;
 
 export const getFinancialInsights = async (transactions) => {
-
-  if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
-    return "Please provide a valid Gemini API key in `src/ai/gemini.js` to enable AI insights.";
+  if (!API_KEY) {
+    return "Please provide a valid Gemini API key via environment variable VITE_GEMINI_API_KEY to enable AI insights.";
   }
 
   // Prepare transaction data for AI
-  const summary = transactions.map(t => ({
+  const summary = transactions.map((t) => ({
     type: t.type,
     amount: t.amount,
     category: t.category,
     date: t.date,
-    note: t.note
+    note: t.note,
   }));
 
   const prompt = `
@@ -29,19 +30,22 @@ export const getFinancialInsights = async (transactions) => {
   `;
 
   try {
+    if (!API_URL) throw new Error("Gemini API key not configured");
     const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
 
     const data = await response.json();
 
     if (!response.ok) {
       console.error("Gemini API Error Response:", data);
-      throw new Error(data.error?.message || "Failed to fetch insights from Gemini.");
+      throw new Error(
+        data.error?.message || "Failed to fetch insights from Gemini.",
+      );
     }
 
     if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
@@ -56,7 +60,7 @@ export const getFinancialInsights = async (transactions) => {
 };
 
 export const chatWithAdvisor = async (history, message, transactions) => {
-  if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") return "API Key missing.";
+  if (!API_KEY) return "API Key missing.";
 
   const context = `
     You are an expert personal finance advisor. 
@@ -65,9 +69,9 @@ export const chatWithAdvisor = async (history, message, transactions) => {
     Help them understand their spending and provide tips.
   `;
 
-  const chatHistory = history.map(msg => ({
-    role: msg.role === 'user' ? 'user' : 'model',
-    parts: [{ text: msg.text }]
+  const chatHistory = history.map((msg) => ({
+    role: msg.role === "user" ? "user" : "model",
+    parts: [{ text: msg.text }],
   }));
 
   try {
@@ -77,9 +81,12 @@ export const chatWithAdvisor = async (history, message, transactions) => {
       body: JSON.stringify({
         contents: [
           ...chatHistory,
-          { role: 'user', parts: [{ text: `${context}\n\nUser Question: ${message}` }] }
-        ]
-      })
+          {
+            role: "user",
+            parts: [{ text: `${context}\n\nUser Question: ${message}` }],
+          },
+        ],
+      }),
     });
 
     const data = await response.json();
@@ -91,7 +98,7 @@ export const chatWithAdvisor = async (history, message, transactions) => {
 };
 
 export const suggestCategory = async (note) => {
-  if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY" || !note) return null;
+  if (!API_KEY || !note) return null;
 
   const prompt = `Based on this transaction note: "${note}", suggest the best category from this list: Food, Shopping, Bills, Medical, Education, Entertainment, Transport, Investment. Return ONLY the category name.`;
 
@@ -100,8 +107,8 @@ export const suggestCategory = async (note) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
 
     const data = await response.json();
@@ -113,7 +120,7 @@ export const suggestCategory = async (note) => {
 };
 
 export const parseTransactionText = async (text) => {
-  if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY" || !text) return null;
+  if (!API_KEY || !text) return null;
 
   const prompt = `
     Analyze this text and extract financial transaction details: "${text}".
@@ -122,7 +129,7 @@ export const parseTransactionText = async (text) => {
     - type ('income' or 'expense')
     - category (one of: Food, Shopping, Bills, Medical, Education, Entertainment, Transport, Investment)
     - note (short description)
-    - date (YYYY-MM-DD, use today's date ${new Date().toISOString().split('T')[0]} if not mentioned)
+    - date (YYYY-MM-DD, use today's date ${new Date().toISOString().split("T")[0]} if not mentioned)
     
     Return ONLY the raw JSON object. No markdown, no extra text.
   `;
@@ -132,8 +139,8 @@ export const parseTransactionText = async (text) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
 
     const data = await response.json();
