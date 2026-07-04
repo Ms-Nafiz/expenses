@@ -529,43 +529,43 @@ const Transactions = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-800/80 mb-6 gap-2 overflow-x-auto custom-scrollbar whitespace-nowrap pb-1">
+      <div className="flex flex-col sm:flex-row bg-slate-900/50 p-1.5 rounded-2xl border border-slate-800/80 mb-6 gap-1.5">
         <button
           onClick={() => setActiveTab("list")}
-          className={`pb-3 px-4 text-sm font-semibold transition-all relative cursor-pointer ${
+          className={`py-2.5 px-4 text-xs sm:text-sm font-bold transition-all rounded-xl cursor-pointer w-full sm:w-auto text-center ${
             activeTab === "list"
-              ? "text-indigo-400 border-b-2 border-indigo-500"
-              : "text-slate-400 hover:text-slate-200"
+              ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-850/40"
           }`}
         >
           লেনদেন তালিকা
         </button>
         <button
           onClick={() => setActiveTab("summary")}
-          className={`pb-3 px-4 text-sm font-semibold transition-all relative cursor-pointer ${
+          className={`py-2.5 px-4 text-xs sm:text-sm font-bold transition-all rounded-xl cursor-pointer w-full sm:w-auto text-center ${
             activeTab === "summary"
-              ? "text-indigo-400 border-b-2 border-indigo-500"
-              : "text-slate-400 hover:text-slate-200"
+              ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-850/40"
           }`}
         >
           মাসিক সারসংক্ষেপ
         </button>
         <button
           onClick={() => setActiveTab("budget")}
-          className={`pb-3 px-4 text-sm font-semibold transition-all relative cursor-pointer ${
+          className={`py-2.5 px-4 text-xs sm:text-sm font-bold transition-all rounded-xl cursor-pointer w-full sm:w-auto text-center ${
             activeTab === "budget"
-              ? "text-indigo-400 border-b-2 border-indigo-500"
-              : "text-slate-400 hover:text-slate-200"
+              ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-850/40"
           }`}
         >
           বাজেট নিয়ন্ত্রণ
         </button>
         <button
           onClick={() => setActiveTab("recurring")}
-          className={`pb-3 px-4 text-sm font-semibold transition-all relative cursor-pointer ${
+          className={`py-2.5 px-4 text-xs sm:text-sm font-bold transition-all rounded-xl cursor-pointer w-full sm:w-auto text-center ${
             activeTab === "recurring"
-              ? "text-indigo-400 border-b-2 border-indigo-500"
-              : "text-slate-400 hover:text-slate-200"
+              ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-850/40"
           }`}
         >
           পুনরাবৃত্তিমূলক লেনদেন
