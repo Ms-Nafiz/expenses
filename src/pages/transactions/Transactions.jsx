@@ -1032,41 +1032,39 @@ const Transactions = () => {
           </div>
 
           {/* Budget Summary Overview */}
-          {budgets.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 glass rounded-3xl border border-slate-800 bg-slate-900/10">
-              <div className="space-y-1">
-                <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">মোট বাজেট সীমা</span>
-                <span className="text-2xl font-bold text-slate-100">৳{budgetSummary.totalLimit.toLocaleString()}</span>
-              </div>
-              
-              <div className="space-y-1">
-                <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">মোট বাজেটভুক্ত খরচ</span>
-                <span className="text-2xl font-bold text-indigo-400">৳{budgetSummary.totalSpent.toLocaleString()}</span>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 glass rounded-3xl border border-slate-800 bg-slate-900/10">
+            <div className="space-y-1">
+              <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">মোট বাজেট সীমা</span>
+              <span className="text-2xl font-bold text-slate-100">৳{budgetSummary.totalLimit.toLocaleString()}</span>
+            </div>
+            
+            <div className="space-y-1">
+              <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">মোট বাজেটভুক্ত খরচ</span>
+              <span className="text-2xl font-bold text-indigo-400">৳{budgetSummary.totalSpent.toLocaleString()}</span>
+            </div>
 
-              <div className="space-y-1">
-                <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">অবশিষ্ট বাজেট</span>
-                <span className="text-2xl font-bold text-emerald-400">৳{budgetSummary.remaining.toLocaleString()}</span>
-              </div>
+            <div className="space-y-1">
+              <span className="text-xs text-slate-400 font-semibold block uppercase tracking-wider">অবশিষ্ট বাজেট</span>
+              <span className="text-2xl font-bold text-emerald-400">৳{budgetSummary.remaining.toLocaleString()}</span>
+            </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs font-semibold">
-                  <span className="text-slate-400 uppercase tracking-wider">বাজেট ব্যবহার</span>
-                  <span className={budgetSummary.percent > 90 ? "text-rose-400" : budgetSummary.percent > 70 ? "text-amber-400" : "text-emerald-400"}>
-                    {budgetSummary.percent}%
-                  </span>
-                </div>
-                <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div 
-                    className={`h-full rounded-full transition-all duration-500 ${
-                      budgetSummary.percent > 90 ? "bg-rose-500" : budgetSummary.percent > 70 ? "bg-amber-500" : "bg-emerald-500"
-                    }`}
-                    style={{ width: `${Math.min(budgetSummary.percent, 100)}%` }}
-                  />
-                </div>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs font-semibold">
+                <span className="text-slate-400 uppercase tracking-wider">বাজেট ব্যবহার</span>
+                <span className={budgetSummary.percent > 90 ? "text-rose-400" : budgetSummary.percent > 70 ? "text-amber-400" : "text-emerald-400"}>
+                  {budgetSummary.percent}%
+                </span>
+              </div>
+              <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                <div 
+                  className={`h-full rounded-full transition-all duration-500 ${
+                    budgetSummary.percent > 90 ? "bg-rose-500" : budgetSummary.percent > 70 ? "bg-amber-500" : "bg-emerald-500"
+                  }`}
+                  style={{ width: `${Math.min(budgetSummary.percent, 100)}%` }}
+                />
               </div>
             </div>
-          )}
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.filter(c => c !== "Other").map((cat) => {
