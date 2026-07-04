@@ -806,9 +806,10 @@ const Transactions = () => {
 
       {activeTab === "summary" && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <SummaryCard title="বাৎসরিক মোট আয়" amount={yearlyTotals.income} type="income" />
             <SummaryCard title="বাৎসরিক মোট খরচ" amount={yearlyTotals.expense} type="expense" />
+            <SummaryCard title="বাৎসরিক মোট ব্যালান্স" amount={yearlyTotals.balance} type="balance" />
             <SummaryCard
               title="গড় মাসিক সঞ্চয়"
               amount={yearlyTotals.avgBalance}
