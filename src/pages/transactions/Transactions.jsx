@@ -1184,7 +1184,8 @@ const Transactions = () => {
           </div>
 
           <div className="glass rounded-3xl border border-slate-800/80 overflow-hidden">
-            <div className="overflow-x-auto">
+            {/* Desktop Table View */}
+            <div className="hidden lg:block overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-800 text-slate-400 text-sm font-semibold bg-slate-900/30">
@@ -1235,6 +1236,49 @@ const Transactions = () => {
                   )}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile Card List View */}
+            <div className="lg:hidden divide-y divide-slate-800/60 p-4 space-y-4">
+              {recurringConfigs.length === 0 ? (
+                <div className="text-center py-12 text-slate-500 text-sm">
+                  কোন পুনরাবৃত্তিমূলক লেনদেন সেটআপ করা নেই।
+                </div>
+              ) : (
+                recurringConfigs.map((config) => (
+                  <div key={config.id} className="py-4 space-y-3">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-bold text-slate-200 text-base">{config.title}</h4>
+                        <span className="text-xs text-slate-500">{config.category}</span>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteRecurring(config.id)}
+                        className="p-2 text-slate-500 hover:text-rose-400 bg-slate-800/50 hover:bg-slate-800 rounded-lg cursor-pointer transition-all"
+                        title="মুছে ফেলুন"
+                      >
+                        <FaTrash size={12} />
+                      </button>
+                    </div>
+
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="font-bold text-slate-300">৳{config.amount.toLocaleString()}</span>
+                      <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${
+                        config.type === "income" 
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+                          : "bg-rose-500/10 text-rose-400 border-rose-500/20"
+                      }`}>
+                        {config.type === "income" ? "আয়" : "খরচ"}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between text-xs text-slate-500">
+                      <span>মাসের দিন: {config.dayOfMonth} তারিখ</span>
+                      <span>সর্বশেষ প্রসেসড: {config.lastProcessedMonth || "কখনো নয়"}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

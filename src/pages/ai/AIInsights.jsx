@@ -194,7 +194,7 @@ const AIInsights = () => {
                         {msg.role === "user" ? <FaUser /> : <FaRobot />}
                       </div>
                       <div
-                        className={`p-4 rounded-2xl text-sm leading-relaxed ${
+                        className={`p-4 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap break-words ${
                           msg.role === "user"
                             ? "bg-indigo-600 text-white rounded-tr-none"
                             : "bg-slate-800/50 text-slate-300 border border-slate-700/50 rounded-tl-none"
