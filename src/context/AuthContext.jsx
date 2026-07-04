@@ -8,7 +8,8 @@ import {
   sendPasswordResetEmail
 } from 'firebase/auth';
 import { auth, googleProvider, db } from '../firebase/config';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp, onSnapshot } from 'firebase/firestore';
+import Loader from '../components/common/Loader';
 
 const AuthContext = createContext();
 
@@ -20,30 +21,40 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    let unsubscribeDoc = null;
+    
+    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const userRef = doc(db, 'users', currentUser.uid);
-        const userDoc = await getDoc(userRef);
         
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        } else {
-          // Auto-create profile for existing/legacy users
-          const newUserData = { 
-            email: currentUser.email,
-            status: 'pending', 
-            createdAt: serverTimestamp() 
-          };
-          await setDoc(userRef, newUserData);
-          setUserData(newUserData);
-        }
+        unsubscribeDoc = onSnapshot(userRef, async (docSnap) => {
+          if (docSnap.exists()) {
+            setUserData(docSnap.data());
+          } else {
+            // Auto-create profile for existing/legacy users
+            const newUserData = { 
+              email: currentUser.email,
+              status: 'pending', 
+              createdAt: serverTimestamp() 
+            };
+            await setDoc(userRef, newUserData);
+            setUserData(newUserData);
+          }
+          setUser(currentUser);
+          setLoading(false);
+        });
       } else {
+        if (unsubscribeDoc) unsubscribeDoc();
         setUserData(null);
+        setUser(null);
+        setLoading(false);
       }
-      setUser(currentUser);
-      setLoading(false);
     });
-    return unsubscribe;
+
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeDoc) unsubscribeDoc();
+    };
   }, []);
 
   const login = (email, password) => {
@@ -91,7 +102,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {loading ? <Loader /> : children}
     </AuthContext.Provider>
   );
 };

@@ -12,7 +12,51 @@
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0f172a; overflow: hidden; font-family: 'Hind Siliguri', 'Inter', sans-serif; z-index: 9999;">
+        <!-- Ambient Glow -->
+        <div style="position: absolute; width: 400px; height: 400px; border-radius: 9999px; background-color: rgba(99, 102, 241, 0.05); filter: blur(120px); pointer-events: none;"></div>
+        <div style="position: absolute; width: 300px; height: 300px; border-radius: 9999px; background-color: rgba(139, 92, 246, 0.05); filter: blur(100px); pointer-events: none;"></div>
+
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <!-- Spinning Ring -->
+          <div style="width: 80px; height: 80px; border-radius: 9999px; border: 2px solid rgba(30, 41, 59, 0.8); border-top-color: #6366f1; border-right-color: #8b5cf6; animation: spin 1.8s linear infinite; box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);"></div>
+          
+          <!-- Wallet Icon -->
+          <div style="position: absolute; color: #818cf8; display: flex; align-items: center; justify-content: center; animation: pulse 1.5s ease-in-out infinite;">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg">
+              <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16s-7.16-16-16-16H80C35.82 64 0 99.82 0 144v288c0 44.18 35.82 80 80 80h381.2c37.66 0 69.29-26.15 77.9-61.28l12.8-51.2a81.137 81.137 0 0 0 0-39.04l-12.8-51.2c-8.61-35.13-40.24-61.28-77.9-61.28H192c-8.84 0-16-7.16-16-16s7.16-16 16-16h269.2c8.84 0 16-7.16 16-16s-7.16-16-16-16zM400 384c-22.09 0-40-17.91-40-40s17.91-40 40-40 40 17.91 40 40-17.91 40-40 40z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Title & Status -->
+        <div style="margin-top: 32px; text-align: center;">
+          <h2 style="font-size: 24px; font-weight: 700; background: linear-gradient(to right, #a5b4fc, #c084fc, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.025em; margin: 0; animation: textPulse 1.5s ease-in-out infinite;">
+            আমার হিসাব নিকাশ
+          </h2>
+          <p style="color: #64748b; font-size: 12px; margin-top: 12px; font-weight: 500; letter-spacing: 0.1em; animation: textPulse 1.5s ease-in-out infinite;">
+            লোড হচ্ছে...
+          </p>
+        </div>
+      </div>
+
+      <!-- Inline Styles for Animation -->
+      <style>
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+          0%, 100% { transform: scale(0.95); opacity: 0.7; }
+          50% { transform: scale(1.05); opacity: 1; }
+        }
+        @keyframes textPulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

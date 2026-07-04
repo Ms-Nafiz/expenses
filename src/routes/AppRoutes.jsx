@@ -10,11 +10,12 @@ import AIInsights from '../pages/ai/AIInsights';
 import Profile from '../pages/profile/Profile';
 import AwaitingApproval from '../pages/auth/AwaitingApproval';
 import AdminPanel from '../pages/admin/AdminPanel';
+import Loader from '../components/common/Loader';
 
 const ProtectedRoute = ({ children }) => {
   const { user, userData, loading } = useAuth();
   
-  if (loading) return <div className="h-screen w-screen flex items-center justify-center bg-slate-950 text-white">Loading...</div>;
+  if (loading) return <Loader />;
   
   if (!user) {
     return <Navigate to="/login" />;
@@ -30,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
 const AdminRoute = ({ children }) => {
   const { user, userData, loading } = useAuth();
   
-  if (loading) return <div className="h-screen w-screen flex items-center justify-center bg-slate-950 text-white">Loading...</div>;
+  if (loading) return <Loader />;
   
   if (!user || userData?.role !== 'admin') {
     return <Navigate to="/" />;

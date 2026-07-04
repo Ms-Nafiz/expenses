@@ -35,3 +35,25 @@ export const updateUserRole = async (userId, newRole) => {
     role: newRole
   });
 };
+
+export const updateUserCategories = async (userId, newCategories) => {
+  const userRef = doc(db, COLLECTION_NAME, userId);
+  return await updateDoc(userRef, {
+    categories: newCategories
+  });
+};
+
+export const updateUserBudgets = async (userId, budgets) => {
+  const userRef = doc(db, COLLECTION_NAME, userId);
+  return await updateDoc(userRef, { budgets });
+};
+
+export const updateUserGoals = async (userId, goals) => {
+  const userRef = doc(db, COLLECTION_NAME, userId);
+  return await updateDoc(userRef, { goals });
+};
+
+export const updateUserRecurringConfigs = async (userId, recurringConfigs) => {
+  const userRef = doc(db, COLLECTION_NAME, userId);
+  return await updateDoc(userRef, { recurringConfigs });
+};
